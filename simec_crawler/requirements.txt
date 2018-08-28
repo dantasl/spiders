@@ -1,0 +1,3 @@
+Scrapy==1.5.0
+IPython==6.4.0
+Selenium==3.13.0
