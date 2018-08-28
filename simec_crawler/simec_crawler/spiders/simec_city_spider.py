@@ -2,7 +2,7 @@
 import scrapy
 import time
 from scrapy.exceptions import CloseSpider
-from achilles_spider.items import SimecCity
+from simec_crawler.items import SimecCity
 from selenium import webdriver
 
 class SimecCitySpider(scrapy.Spider):
@@ -14,7 +14,7 @@ class SimecCitySpider(scrapy.Spider):
               "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"]
     custom_settings = {
         'ITEM_PIPELINES': {
-            'achilles_spider.pipelines.FileExporterJson': 300,
+            'simec_crawler.pipelines.FileExporterJson': 300,
         }
     }
 

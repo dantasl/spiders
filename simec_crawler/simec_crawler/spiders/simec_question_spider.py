@@ -3,7 +3,7 @@ import scrapy
 import time
 import json
 from scrapy.exceptions import CloseSpider
-from achilles_spider.items import SimecQuestion
+from simec_crawler.items import SimecQuestion
 from selenium import webdriver
 
 
@@ -12,7 +12,7 @@ class SimecQuestionSpider(scrapy.Spider):
     start_urls = ['http://simec.mec.gov.br/login.php']
     custom_settings = {
         'ITEM_PIPELINES': {
-            'achilles_spider.pipelines.FileExporterJson': 300,
+            'simec_crawler.pipelines.FileExporterJson': 300,
         }
     }
 
@@ -25,8 +25,8 @@ class SimecQuestionSpider(scrapy.Spider):
     def login_and_check(self, response):
         # Performs login to the site
         self.driver.get(response.url)
-        self.driver.find_element_by_id("usucpf").send_keys("007.391.501-70")
-        self.driver.find_element_by_id("ususenha").send_keys("temp240718")
+        self.driver.find_element_by_id("usucpf").send_keys("")
+        self.driver.find_element_by_id("ususenha").send_keys("")
         button_access = self.driver.find_element_by_xpath("//button[@type='submit' and contains(., 'Acessar')]")
         self.driver.execute_script("arguments[0].click();", button_access)
         time.sleep(5)
