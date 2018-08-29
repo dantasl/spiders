@@ -27,8 +27,8 @@ class SimecCitySpider(scrapy.Spider):
     def login_and_check(self, response):
         # Performs login to the site
         self.driver.get(response.url)
-        self.driver.find_element_by_id("usucpf").send_keys("007.391.501-70")
-        self.driver.find_element_by_id("ususenha").send_keys("temp240718")
+        self.driver.find_element_by_id("usucpf").send_keys("")
+        self.driver.find_element_by_id("ususenha").send_keys("")
         button_access = self.driver.find_element_by_xpath("//button[@type='submit' and contains(., 'Acessar')]")
         self.driver.execute_script("arguments[0].click();", button_access)
         time.sleep(5)
