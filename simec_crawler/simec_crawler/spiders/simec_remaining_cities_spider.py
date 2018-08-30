@@ -15,79 +15,7 @@ class SimecRemainingCitiesSpider(scrapy.Spider):
             'simec_crawler.pipelines.FileExporterJson': 300,
         }
     }
-
-    cidades4 = [
-        "Registro",
-        "Restinga",
-        "Ribeira",
-        "Ribeirão Bonito",
-        "Ribeirão Branco",
-        "Ribeirão Corrente",
-        "Ribeirão do Sul",
-        "Ribeirão dos Índios",
-        "Ribeirão Grande",
-        "Ribeirão Pires",
-        "Ribeirão Preto",
-        "Rifaina",
-        "Rincão",
-        "Rinópolis",
-        "Rio Claro",
-        "Rio das Pedras",
-        "Rio Grande da Serra",
-        "Riolândia",
-        "Riversul",
-        "Rosana",
-        "Roseira",
-        "Rubiácea",
-        "Rubinéia",
-        "Sabino",
-    ]
-    cidades5 = [
-        "Suzanápolis",
-        "Suzano",
-        "Tabapuã",
-        "Tabatinga",
-        "Taboão da Serra",
-        "Taciba",
-        "Taguaí",
-        "Taiaçu",
-        "Taiúva",
-        "Tambaú",
-        "Tanabi",
-        "Tapiraí",
-        "Tapiratiba",
-        "Taquaral",
-        "Taquaritinga",
-        "Taquarituba",
-        "Taquarivaí",
-        "Tarabai",
-    ]
-    cidades6 = [
-        "Turmalina",
-        "Ubarana",
-        "Ubatuba",
-        "Ubirajara",
-        "Uchoa",
-        "União Paulista",
-        "Urânia",
-        "Uru",
-        "Urupês",
-        "Valentim Gentil",
-        "Valinhos",
-        "Valparaíso",
-        "Vargem",
-        "Vargem Grande do Sul",
-        "Vargem Grande Paulista",
-        "Várzea Paulista",
-        "Vera Cruz",
-        "Vinhedo",
-        "Viradouro",
-        "Vista Alegre do Alto",
-        "Vitória Brasil",
-        "Votorantim",
-        "Votuporanga",
-        "Zacarias"
-    ]
+    cidades = []
 
     def __init__(self, *args, **kwargs):
         options = webdriver.ChromeOptions()
@@ -115,7 +43,7 @@ class SimecRemainingCitiesSpider(scrapy.Spider):
     def parse(self, response):
         self.login_and_check(response)
 
-        for cidade in self.cidades4:
+        for cidade in self.cidades:
             # Goes to list of cities
             self.driver.get("http://simec.mec.gov.br/par3/par3.php?modulo=principal/listaMunicipios&acao=A")
             time.sleep(3)
@@ -123,7 +51,7 @@ class SimecRemainingCitiesSpider(scrapy.Spider):
             # Goes to specific state
             state_options = self.driver.find_elements_by_xpath("//select[@name='estuf']/option")
             for option in state_options:
-                if option.text == "São Paulo":
+                if option.text == " ": # Put state name here
                     option.click()
                     break
             time.sleep(1)

@@ -4,10 +4,24 @@
 # But not these files...
 !.gitignore
 !question_results.json
+!alagoas.json
 !bahia.json
+!ceara.json
+!goias.json
+!maranhao.json
+!mato_grosso.json
 !minas_gerais.json
-!sao_paulo.json
-!rio_g_sul.json
-!parrudo.json
+!para.json
+!paraiba.json
 !parana.json
+!parrudo.json
+!pernambuco.json
+!piaui.json
 !rio_g_norte.json
+!rio_g_sul.json
+!santa_catarina.json
+!sao_paulo.json
+!tocantins.json
+
+
+
