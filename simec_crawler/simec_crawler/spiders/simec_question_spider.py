@@ -25,8 +25,8 @@ class SimecQuestionSpider(scrapy.Spider):
     def login_and_check(self, response):
         # Performs login to the site
         self.driver.get(response.url)
-        self.driver.find_element_by_id("usucpf").send_keys("")
-        self.driver.find_element_by_id("ususenha").send_keys("")
+        self.driver.find_element_by_id("usucpf").send_keys("007.391.501-70")
+        self.driver.find_element_by_id("ususenha").send_keys("temp240718")
         button_access = self.driver.find_element_by_xpath("//button[@type='submit' and contains(., 'Acessar')]")
         self.driver.execute_script("arguments[0].click();", button_access)
         time.sleep(5)
@@ -50,7 +50,7 @@ class SimecQuestionSpider(scrapy.Spider):
     def parse(self, response):
         self.login_and_check(response)
 
-        with open("./results/cities.json", "r", encoding="utf-8",) as data_cities:
+        with open("./results/states/tocantins.json", "r", encoding="utf-8",) as data_cities:
             data = json.load(data_cities)
             for field in data:
                 q_item = SimecQuestion()
