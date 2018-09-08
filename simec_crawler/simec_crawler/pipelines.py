@@ -10,7 +10,7 @@ from scrapy.exporters import JsonItemExporter
 
 class FileExporterJson(object):
     def open_spider(self, spider):
-        self.file = open("./results/tocantins_result.json", 'wb')
+        self.file = open("./results/.json", 'wb') # Update name
         self.exporter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
         self.exporter.start_exporting()
 
