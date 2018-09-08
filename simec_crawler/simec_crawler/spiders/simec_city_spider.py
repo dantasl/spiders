@@ -35,7 +35,7 @@ class SimecCitySpider(scrapy.Spider):
 
         # Checks if login is correct (i.e. the name of the expected user appears)
         has_username = self.driver.find_element_by_xpath(
-            "//span[@class='profile-info' and contains(., 'JOSE ARIMATHEA VALENTE NETO')]"
+            "//span[@class='profile-info' and contains(., '')]"
         )
         if not has_username:
             raise CloseSpider("Error while authenticating.")
