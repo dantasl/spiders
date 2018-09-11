@@ -15,7 +15,7 @@ class SimecRemainingCitiesSpider(scrapy.Spider):
             'simec_crawler.pipelines.FileExporterJson': 300,
         }
     }
-    cidades = []
+    cities = [] # Put the names you want to search here
 
     def __init__(self, *args, **kwargs):
         options = webdriver.ChromeOptions()
@@ -26,15 +26,15 @@ class SimecRemainingCitiesSpider(scrapy.Spider):
     def login_and_check(self, response):
         # Performs login to the site
         self.driver.get(response.url)
-        self.driver.find_element_by_id("usucpf").send_keys("007.391.501-70")
-        self.driver.find_element_by_id("ususenha").send_keys("temp240718")
+        self.driver.find_element_by_id("").send_keys("")
+        self.driver.find_element_by_id("").send_keys("")
         button_access = self.driver.find_element_by_xpath("//button[@type='submit' and contains(., 'Acessar')]")
         self.driver.execute_script("arguments[0].click();", button_access)
         time.sleep(5)
 
         # Checks if login is correct (i.e. the name of the expected user appears)
         has_username = self.driver.find_element_by_xpath(
-            "//span[@class='profile-info' and contains(., 'JOSE ARIMATHEA VALENTE NETO')]"
+            "//span[@class='profile-info' and contains(., '')]"
         )
         if not has_username:
             raise CloseSpider("Error while authenticating.")
@@ -43,7 +43,7 @@ class SimecRemainingCitiesSpider(scrapy.Spider):
     def parse(self, response):
         self.login_and_check(response)
 
-        for cidade in self.cidades:
+        for city in self.cities:
             # Goes to list of cities
             self.driver.get("http://simec.mec.gov.br/par3/par3.php?modulo=principal/listaMunicipios&acao=A")
             time.sleep(3)
@@ -57,7 +57,7 @@ class SimecRemainingCitiesSpider(scrapy.Spider):
             time.sleep(1)
 
             # Searches for city
-            self.driver.find_element_by_id("mundescricao").send_keys(cidade)
+            self.driver.find_element_by_id("mundescricao").send_keys(city)
             self.driver.find_element_by_xpath("//input[@name='pesquisar']").click()
             time.sleep(2)
 
