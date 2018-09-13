@@ -60,8 +60,8 @@ class FilerSpider(scrapy.Spider):
                     receipt = FilerPartner()
                     receipt["socio_cnpj_cpf_emitente"] = data[charAt:charAt + 14]
                     charAt += 14
-                    receipt["socio_cpf_socio_emitente"] = data[charAt:charAt + 11]
-                    charAt += 11
+                    receipt["socio_cpf_socio_emitente"] = data[charAt:charAt + 14]
+                    charAt += 14
                     receipt["socio_nome_socio"] = data[charAt:charAt + 60]
                     charAt += 60
                     receipt["socio_eh_adm"] = data[charAt:charAt + 1]
