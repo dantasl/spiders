@@ -1,6 +1,10 @@
 import json
 
 
+def treat_date(date):
+    return "{}/{}/{} {}:{}:{}".format(date[0:2], date[2:4], date[4:8], date[8:10], date[10:12], date[12:])
+
+
 def json_treat(json_data):
     data_list = []
     for item in json_data:
@@ -9,12 +13,16 @@ def json_treat(json_data):
             data[key] = value.strip()  # Removes all white spaces before and after string
             if key == "valor_total_nfe" or key == "numero_nfe":
                 data[key] = (value.strip()).lstrip("0")  # Removes all leading zeroes from value
+            if key.startswith("data"):
+                data[key] = treat_date(value)
         data_list.append(data)
     return data_list
 
 
-months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
-years = [2016, 2017, 2018]
+# ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+months = ["04", "05", "06"]
+# [2016, 2017, 2018]
+years = [2018]
 
 for year in years:
     for month in months:
